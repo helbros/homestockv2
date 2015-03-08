@@ -1,0 +1,294 @@
+<script>
+$(document).ready(function(){					
+	 $(document).on('click', ".jcarousel-prev", function () {
+		 	$('.jcarousel').jcarousel();
+	        $('.jcarousel').jcarousel('scroll', '-=4');	     
+	 });
+	 $(document).on('click', ".jcarousel-next", function () {
+		 	$('.jcarousel').jcarousel();		    
+	        $('.jcarousel').jcarousel('scroll', '+=4');	        
+	 });	
+	 
+	var ul='<div><div class="jcarousel"><ul class="list-unstyled list-stock-box">';		
+	$.get('http://ajax.vietstock.vn/GetChart.ashx'
+			,function(data){
+					var li='';					
+					for(var x=0;x<=28;x++){
+						if(data[x].Color=='#39ca32'){
+						li+="<li><h5><strong>"+data[x].Symbol+"</strong></h5><h6>"+data[x].CurrentPrice+"</h6><span class='stock-price-up'>+"+data[x].Change+"</span><p class='stock-price-up'>("+data[x].PercentChange+"%)</p></li>";
+						}else{
+							li+="<li><h5><strong>"+data[x].Symbol+"</strong></h5><h6>"+data[x].CurrentPrice+"</h6><span class='stock-price-down'>"+data[x].Change+"</span><p class='stock-price-down'>("+data[x].PercentChange+"%)</p></li>";
+						}						
+					}
+					ul=ul+li+'</ul></div><span class="glyphicon glyphicon-chevron-left jcarousel-prev"></span><span class="glyphicon glyphicon-chevron-right jcarousel-next"></span></div>';					
+					$('.row-list-stock-box').append(ul);
+				}
+			);	
+	}
+);
+</script>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=796421970418552&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="row">
+	<div class="col-md-8">
+		<?php echo $this->chatbox;?>
+	</div>
+	<div class="col-md-4">
+		<div class="row row-list-stock-box">
+		
+		</div>
+		<div class="row">
+			<?php echo $this->view_stock?>
+		</div>
+	</div>
+</div>
+<br>
+<div class="row">
+	<div class="col-md-9">
+	<div class="row view-stock-panel hidden">
+	<div class="col-md-12 block">
+		<table class="table table-bordered text-center stock-price-table hidden">
+		  <tr>
+		    <th>Trần</th>
+		    <th>Sàn</th>
+		    <th>TC</th>
+		    <th>Mã CK</th>
+		    <th id="id_stock">ACB</th>
+		    <th id="name_company" colspan="6">Cty ngân hàng ACB</th>
+		    <th width="37" rowspan="2">Giá khớp</th>
+		    <th width="37" rowspan="2">KL khớp</th>
+		    <th width="37"><button type="button" class="close close-stock-price-table" aria-label="Close"><span aria-hidden="true">&times;</span></button></th>
+		  </tr>
+		  <tr>
+		    <td id="tran">14.3</td>
+		    <td id="san">12.5</td>
+		    <td id="thamchieu">13.4</td>
+		    <td>&nbsp;</td>
+		    <td>&nbsp;</td>
+		    <th>Giá 3</th>
+		    <th>KL3</th>
+		    <th>Giá 2</th>
+		    <th>KL2</th>
+		    <th>Giá 1</th>
+		    <th>KL 1</th>
+		    <th width="37">+/-</th>
+		  </tr>
+		  <tr>
+		    <th>Mở cửa</th>
+		    <th>Cao nhất</th>
+		    <th>Thấp nhất</th>
+		    <th>NN mua</th>
+		    <th>Dư mua</th>
+		    <td id="du_mua_gia_3">12.7</td>
+		    <td id="du_mua_KL_3">310</td>
+		    <td id="du_mua_gia_2">12.8</td>
+		    <td id="du_mua_KL_2">100</td>
+		    <td id="du_mua_gia_1">12.9</td>
+		    <td id="du_mua_KL_1">98</td>
+		    <td id="gia_khop" rowspan="2">13</td>
+		    <td id="khoi_luong_khop"  rowspan="2">342</td>
+		    <td id="tang_giam"  rowspan="2">-0.4</td>
+		  </tr>
+		  <tr>
+		    <td id="mo_cua">1027</td>
+		    <td id="cao_nhat">13</td>
+		    <td id="thap_nhat">13.5</td>
+		    <td id="nn_mua">12.9</td>
+		    <th>Dư bán</th>
+		    <td id="du_ban_gia_3">13.6</td>
+		    <td id="du_ban_KL_3">300</td>
+		    <td id="du_ban_gia_2">13.5</td>
+		    <td id="du_ban_KL_2">94</td>
+		    <td id="du_ban_gia_1">13.4</td>
+		    <td id="du_ban_KL_1">99</td>
+		  </tr>
+	   </table>
+	</div>
+	</div>
+		<h3>Thảo luận</h3>
+		<ul class="list-unstyled list-article ul-custom">
+		<?php foreach ($this->paginator as $art):?>
+			<a href="<?=$this->url('bai-viet',array('title'=>$this->custom_helper()->change_alias($art->title),'id'=>$art->id,'format'=>'html')) ?>">
+				<li>
+					<p class="thumb"><img alt="" src="<?=$this->custom_helper()->getFirstLink($art->full_text) ?>"></p>
+					<p class="title"><?=$art->title?></p>
+					<p class="review"><?=$this->custom_helper()->cutReadmore(strip_tags($art->intro_text),25)?></p>					
+				</li>
+			</a>
+		<?php endforeach;?>		
+		</ul>
+	
+	<div class="row">
+		<div class="col-md-12">
+		<?php echo $this->paginationControl ( $this->paginator, 'sliding', array ('partial/paginator.phtml','News' ), array ('route' => 'home-page'	) )?>
+		</div>
+	</div>
+	</div>
+	<div class="col-md-3">
+	<div id="fb-root"></div>	
+		<script>
+			$(document).ready(function(){
+				//refresh stock price trong 15s
+				setInterval(function(){doRefresh()},15000);
+				
+				//**lay name congty add vao select
+				//company_arr;
+				$('.view-stock-mini select').val('asdasd');
+				$.each(company_arr, function(key, value) {   
+				     $('.view-stock-mini select')
+				         .append($("<option></option>")
+				         //.attr("value",key)
+				         .text(value)); 
+				});
+
+				
+				$('.block').on('click','.close-stock-price-table',function(){
+					 $(this).parents('.table').remove();
+					
+					 //$('#ABT #name_company').text('haha');
+				});
+				
+				$('.view-stock-mini button').click(function(){
+					var s=$('.view-stock-mini select').val();
+					var res=s.split(' ',1);
+					//console.log(res);
+						$.post(base_url+'/news/stock/getstockinfo/'+$('.view-stock-mini select').val().split(" ",1),								
+								function(data){
+									//console.log((data.stock_info.name.value).split("&",1));
+									$('.stock-price-table').attr('id',res);							
+									$('#id_stock').text(data.stock_info.name.value).removeClass().addClass(data.stock_info.tang_giam.class);
+									$('#name_company').text(data.stock_info.name_company);
+									$('#tran').text(data.stock_info.tran.value).removeClass().addClass(data.stock_info.tran.class);
+									$('#san').text(data.stock_info.san.value).removeClass().addClass(data.stock_info.san.class);
+									$('#thamchieu').text(data.stock_info.thamchieu.value).removeClass().addClass(data.stock_info.thamchieu.class);
+									$('#du_mua_gia_3').text(data.stock_info.du_mua_gia_3.value).removeClass().addClass(data.stock_info.du_mua_gia_3.class);
+									$('#du_mua_KL_3').text(data.stock_info.du_mua_KL_3.value).removeClass().addClass(data.stock_info.du_mua_KL_3.class);
+									$('#du_mua_gia_2').text(data.stock_info.du_mua_gia_2.value).removeClass().addClass(data.stock_info.du_mua_gia_2.class);
+									$('#du_mua_KL_2').text(data.stock_info.du_mua_KL_2.value).removeClass().addClass(data.stock_info.du_mua_KL_2.class);
+									$('#du_mua_gia_1').text(data.stock_info.du_mua_gia_1.value).removeClass().addClass(data.stock_info.du_mua_gia_1.class);
+									$('#du_mua_KL_1').text(data.stock_info.du_mua_KL_1.value).removeClass().addClass(data.stock_info.du_mua_KL_1.class);									
+									$('#du_ban_gia_3').text(data.stock_info.du_ban_gia_3.value).removeClass().addClass(data.stock_info.du_ban_gia_3.class);
+									$('#du_ban_KL_3').text(data.stock_info.du_ban_KL_3.value).removeClass().addClass(data.stock_info.du_ban_KL_3.class);
+									$('#du_ban_gia_2').text(data.stock_info.du_ban_gia_2.value).removeClass().addClass(data.stock_info.du_ban_gia_2.class);
+									$('#du_ban_KL_2').text(data.stock_info.du_ban_KL_2.value).removeClass().addClass(data.stock_info.du_ban_KL_2.class);
+									$('#du_ban_gia_1').text(data.stock_info.du_ban_gia_1.value).removeClass().addClass(data.stock_info.du_ban_gia_1.class);
+									$('#du_ban_KL_1').text(data.stock_info.du_ban_KL_1.value).removeClass().addClass(data.stock_info.du_ban_KL_1.class);
+									$('#gia_khop').text(data.stock_info.gia_khop.value).removeClass().addClass(data.stock_info.gia_khop.class);
+									$('#khoi_luong_khop').text(data.stock_info.khoi_luong_khop.value).removeClass().addClass(data.stock_info.khoi_luong_khop.class);
+									$('#tang_giam').text(data.stock_info.tang_giam.value).removeClass().addClass(data.stock_info.tang_giam.class);
+									$('#mo_cua').text(data.stock_info.mo_cua.value).removeClass().addClass(data.stock_info.mo_cua.class);
+									$('#cao_nhat').text(data.stock_info.cao_nhat.value).removeClass().addClass(data.stock_info.cao_nhat.class);
+									$('#thap_nhat').text(data.stock_info.thap_nhat.value).removeClass().addClass(data.stock_info.thap_nhat.class);
+									$('#nn_mua').text(data.stock_info.nn_mua.value).removeClass().addClass(data.stock_info.nn_mua.class);
+									
+									
+									$('.view-stock-panel').removeClass('hidden');
+									$('.view-stock-panel').addClass('show');
+									$('.stock-price-table').clone().removeClass('stock-price-table hidden').addClass('clone-table-price').appendTo('.view-stock-panel .block');
+									}
+							);
+					});
+
+				//thuc hien refresh
+				function doRefresh(){
+					var list_refresh=[];
+					$('.clone-table-price').each(function($k,$v){
+							list_refresh[$k]=$(this).attr('id');						
+						}					
+					);
+					if(list_refresh!=null){
+						for(x in list_refresh){
+							refreshPrice(list_refresh[x]);
+						}
+					}
+										
+				}
+				//post lay data de dung cho refresh
+				function refreshPrice(stock_id){					
+					$.post(base_url+'/news/stock/getstockinfo/'+stock_id,								
+							function(data){
+								//console.log(data);									
+								$('#'+stock_id+' #id_stock').text(data.stock_info.name.value).removeClass().addClass(data.stock_info.tang_giam.class);
+								$('#'+stock_id+' #name_company').text(data.stock_info.name_company);
+								$('#'+stock_id+' #tran').text(data.stock_info.tran.value).removeClass().addClass(data.stock_info.tran.class);
+								$('#'+stock_id+' #san').text(data.stock_info.san.value).removeClass().addClass(data.stock_info.san.class);
+								$('#'+stock_id+' #thamchieu').text(data.stock_info.thamchieu.value).removeClass().addClass(data.stock_info.thamchieu.class);
+								$('#'+stock_id+' #du_mua_gia_3').text(data.stock_info.du_mua_gia_3.value).removeClass().addClass(data.stock_info.du_mua_gia_3.class);
+								$('#'+stock_id+' #du_mua_KL_3').text(data.stock_info.du_mua_KL_3.value).removeClass().addClass(data.stock_info.du_mua_KL_3.class);
+								$('#'+stock_id+' #du_mua_gia_2').text(data.stock_info.du_mua_gia_2.value).removeClass().addClass(data.stock_info.du_mua_gia_2.class);
+								$('#'+stock_id+' #du_mua_KL_2').text(data.stock_info.du_mua_KL_2.value).removeClass().addClass(data.stock_info.du_mua_KL_2.class);
+								$('#'+stock_id+' #du_mua_gia_1').text(data.stock_info.du_mua_gia_1.value).removeClass().addClass(data.stock_info.du_mua_gia_1.class);
+								$('#'+stock_id+' #du_mua_KL_1').text(data.stock_info.du_mua_KL_1.value).removeClass().addClass(data.stock_info.du_mua_KL_1.class);									
+								$('#'+stock_id+' #du_ban_gia_3').text(data.stock_info.du_ban_gia_3.value).removeClass().addClass(data.stock_info.du_ban_gia_3.class);
+								$('#'+stock_id+' #du_ban_KL_3').text(data.stock_info.du_ban_KL_3.value).removeClass().addClass(data.stock_info.du_ban_KL_3.class);
+								$('#'+stock_id+' #du_ban_gia_2').text(data.stock_info.du_ban_gia_2.value).removeClass().addClass(data.stock_info.du_ban_gia_2.class);
+								$('#'+stock_id+' #du_ban_KL_2').text(data.stock_info.du_ban_KL_2.value).removeClass().addClass(data.stock_info.du_ban_KL_2.class);
+								$('#'+stock_id+' #du_ban_gia_1').text(data.stock_info.du_ban_gia_1.value).removeClass().addClass(data.stock_info.du_ban_gia_1.class);
+								$('#'+stock_id+' #du_ban_KL_1').text(data.stock_info.du_ban_KL_1.value).removeClass().addClass(data.stock_info.du_ban_KL_1.class);
+								$('#'+stock_id+' #gia_khop').text(data.stock_info.gia_khop.value).removeClass().addClass(data.stock_info.gia_khop.class);
+								$('#'+stock_id+' #khoi_luong_khop').text(data.stock_info.khoi_luong_khop.value).removeClass().addClass(data.stock_info.khoi_luong_khop.class);
+								$('#'+stock_id+' #tang_giam').text(data.stock_info.tang_giam.value).removeClass().addClass(data.stock_info.tang_giam.class);
+								$('#'+stock_id+' #mo_cua').text(data.stock_info.mo_cua.value).removeClass().addClass(data.stock_info.mo_cua.class);
+								$('#'+stock_id+' #cao_nhat').text(data.stock_info.cao_nhat.value).removeClass().addClass(data.stock_info.cao_nhat.class);
+								$('#'+stock_id+' #thap_nhat').text(data.stock_info.thap_nhat.value).removeClass().addClass(data.stock_info.thap_nhat.class);
+								$('#'+stock_id+' #nn_mua').text(data.stock_info.nn_mua.value).removeClass().addClass(data.stock_info.nn_mua.class);								
+								}
+						);
+				}
+				});
+		</script>
+		<div class="view-stock-mini well-remix">
+			<div class="form-inline">			 
+			   		<select class="form-control" style="width:195px">			   				
+					</select>
+				    <button class="btn btn-default">Xem</button>			   			 
+			</div>			
+		</div>
+		<div class="share-block">
+		<script type="text/javascript">
+		$(document).ready(function(){	
+			$(".fb-share-but").click(function(){	
+				FB.ui(
+						  {
+						    method: 'share',
+						    href: window.location.href,
+						  },
+						  function(response) {
+						    if (response && !response.error_code) {
+						      alert('Cám ơn bạn đã chia sẽ bài viết.');
+						    } else {
+						      alert('Error while posting.');
+						    }
+						  }
+						);
+			});
+			$(".google-share-but").click(function(){
+				window.open('https://plus.google.com/share?url={'+window.location.href+'}','', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+			});
+			
+		});
+		</script>
+			<ul class="list-unstyled well-remix share-list">
+				<h5><strong>Like us : </strong></h5>				
+				<span><div class="fb-like" data-href="https://homestock.vn" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div></span>
+				<br>
+				<span><div class="g-plusone" data-annotation="inline" data-width="300"></div></span>
+																													 
+				<h5> <strong>Share us : </strong></h5>				
+				<li><span class="fa fa-facebook fb-share-but"></span></li>
+                <li><span class="fa fa-google-plus google-share-but"></span></li>
+                <li><span class="fa fa-twitter"></span></li>
+			</ul>
+		</div>
+	<div class="fb-like-box" data-href="https://www.facebook.com/homestock.vn" data-height="400" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
+	</div>
+	
+</div>
+
+

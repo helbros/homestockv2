@@ -1,0 +1,35 @@
+<div class="row">
+	<div class="col-md-12">
+		<h1 class="text-center">Đăng ký thành viên</h1><br><br>		
+		<p class="quick-register text-center">			
+			<a href="<?=$link_login_fb ?>"><i class="fa fa-facebook"></i></a>
+	        <i class="fa fa-google-plus"></i>
+	        <i class="fa fa-twitter"></i>
+		</p><br><br>
+		<div class="register-block center-block border-well">  
+			<?php
+			$form = $this->form;
+			$form->prepare ();						
+			$form->setAttribute ( 'action', $this->url ( 'news/auth/register' ) );
+			echo $this->form ()->openTag ( $form );
+			echo $this->formInput( $form->get ( 'username' ) ) . '<br>';
+			echo $this->formElementErrors($form->get ( 'username' ));
+			echo $this->formInput ( $form->get ( 'password' ) ) . '<br>';
+			echo $this->formElementErrors($form->get ( 'password' ));
+			echo $this->formInput ( $form->get ( 'confirm_password' ) ) . '<br>';
+			echo $this->formElementErrors($form->get ( 'confirm_password' ));
+			echo $this->formInput ( $form->get ( 'email' ) ) . '<br>';
+			echo $this->formElementErrors($form->get ( 'email' ));
+			?>
+			<label> <span>Xác nhận người dùng</span><br>  <br>
+			<div class="g-recaptcha" data-sitekey="6Lfd-P4SAAAAAH0yMt3feMsAfE9fSyiOIfsoVZw5"></div> 			
+			</label> <br>
+			<?php			
+			echo $this->formRow ( $form->get ( 'submit' ) ) . '<br>';
+			echo $this->formRow ( $form->get ( 'csrf' ) ) . '<br>';
+			echo $this->form ()->closeTag ( $form );
+			echo $this->flashMessenger()->render('error');			
+			?>			
+		</div>
+	</div>
+</div>

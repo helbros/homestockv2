@@ -1,0 +1,92 @@
+<script src="<?=$this->basePath() ?>/plugin/tinymce/tinymce.min.js"></script>
+<script>
+$(document).ready(function(){
+	//cấu hình cho tinymce
+	tinymce.init({
+		selector: "textarea",theme: "modern",width: 680,height: 300,
+		relative_urls:false,
+		remove_script_host:false,
+	    plugins: [
+	         "advlist autolink link image lists charmap print preview hr anchor pagebreak",
+	         "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
+	         "table contextmenu directionality emoticons paste textcolor responsivefilemanager"
+	   ],
+	   toolbar1: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect",
+	   toolbar2: "| responsivefilemanager | link unlink anchor | image media | forecolor backcolor  | print preview code | mybutton ",
+	   image_advtab: true ,
+	   
+	   external_filemanager_path:"http://localhost/workspace/testzend/filemanager/",
+	   filemanager_title:"Responsive Filemanager" ,
+	   //xternal_plugins: { "filemanager" : "http://localhost/workspace/testzend/filemanager/plugin.min.js"},
+		
+		
+		
+		//-----------------------
+	    /*selector: "textarea",
+	    toolbar: "undo redo | styleselect | bold italic | link image | alignleft | aligncenter | alignright | mybutton",	*/    
+	    setup: function(editor) {
+	        editor.addButton('mybutton', {
+	            text: 'Read more',
+	            icon: false,
+	            onclick: function() {
+	                editor.insertContent('@--Readmore--@');
+	           	 }
+	        	});
+	        }
+	 });
+});
+</script>
+<?php 
+$form=$this->form;
+$form->prepare();
+$form->get('title')->setValue($article->title);
+$form->get('alias')->setValue($article->alias);
+$form->get('full_text')->setValue($article->full_text);
+?>
+<div class="row">		
+	<div class="col-md-2">
+		<div class="list-group">
+			   <a href="<?=$this->url('news/article') ?>" class="list-group-item">Quản lý bài viết </a>
+			  <a href="<?=$this->url('news/article/add-article') ?>" class="list-group-item">Thêm bài viết</a>
+			  
+			  
+		</div>
+	</div>
+	<div class="col-md-10">	
+		<div class="row">
+		<form action="" method="post">					
+			<div class="col-md-3">  
+			<div class="input-group input-group-edit">							
+				 <?php echo $this->formRow($form->get('cate_article_id'));?>								
+			</div>					
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-8">  			
+					<div class="input-group input-group-edit">									  	
+				  		<?php echo $this->formRow($form->get('title'));?>
+				  	</div>
+					<div class="input-group input-group-edit">				  		
+				  		<?php echo $this->formRow($form->get('alias'));?>
+				  	</div>				  	
+				  		<?php echo $this->formRow($form->get('full_text'));?>					  	
+				  				  	
+				 <div class="pull-right">
+					  	<div class="btn-group">  	
+					  	<button type="submit" class="btn btn-default" name="add-article" id="add-book" value="add-article">Lưu bài viết</button>
+					  	<button type="button" class="btn btn-default" name="delete" value="delete">Xóa</button>		  	
+					  </div>    
+					</div>
+			
+			</div>	
+			<div class="col-md-4">
+			<div class="pull-right"> 				
+				<input type="file" class="form-control" placeholder="" name="memberfile">
+			</div>								
+			</div>		
+		</div>	
+		</form>
+	</div>
+</div>
+

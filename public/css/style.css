@@ -1,0 +1,591 @@
+body {	
+	//font-family: "Open Sans","HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-family: Tahoma, Geneva, sans-serif !important;
+	font-size: 14px !important;
+    
+	padding-top: 60px;    
+	//padding-bottom: 40px;
+    //background-color: #e1e3e4 !important;
+}
+
+
+/* ---------------CUSTOM BOOSTRAP ------------------- */
+.container-custom{
+	/* width: 1300px !important; */
+}
+@media (min-width: 1200px) {
+  .container-custom {
+    width: 1300px !important;
+  }
+}
+.ul-custom{
+	margin-top: 20px;
+	/* padding: 15px; */
+}
+.navbar{
+	border-bottom:1px solid #d2d6d5 !important;
+}
+.border-well{
+	box-shadow: 0px 0px 2px #aaa;
+}
+.well-remix{
+	box-shadow: 0px 0px 2px #aaa;
+	min-height: 20px;
+	padding: 19px;
+	margin-bottom: 20px;	
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+	//box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+/* ---------------MAIN MENU ------------------- */
+.main-menu li a{
+	height: 56px;
+    
+}
+.main-menu li{
+	border: 1px solid #d2d6d5;
+	border-right: none;
+	border-bottom:none;
+	height:57px;
+}
+.main-menu li ul{
+	visibility: hidden;	
+}
+.main-menu li:hover ul{
+	visibility: visible;
+}
+
+/* ---------------LOGO LEFT-CORNOR ------------------- */
+.logo{
+	height: 40px;
+	width: 130px;
+	/* padding: 14px; */
+	margin-top: 9px;
+	margin-left: 10px;
+}
+.navbar-brand-remix{
+	padding: 0!important;
+}
+
+
+/*------CHAT BOX---------*/
+.chat-box{
+	border: 1px solid #d2d6d5;
+}
+.chat-header{
+	background: #DFDFDF;
+	height:40px;
+}
+.chat-header span{
+	margin-top: auto;
+	margin-bottom: auto;
+}
+.chat-content{
+	height: 286px;
+	overflow:auto;	
+}
+.chat-panel{
+	padding: 5px;
+}
+.td-timechat{
+	 width: 155px;
+}
+.td-userchat{
+	width: 110px;
+}
+.td-messagechat p{
+	// width: 100%;
+}
+.table-message{
+	 table-layout: fixed;
+}
+.table-message tr td{
+	 word-wrap: break-word;       /* Internet Explorer 5.5+, Chrome, Firefox 3+ */
+    overflow-wrap: break-word;   /* CSS3 standard: Chrome & Opera 2013+ */
+}
+
+/* --------PANEL USER------------- */
+.panel-user li{
+	//background: #1a99aa;
+}
+.panel-user li a{
+	display: inline-block;
+}
+.panel-user i{
+	font-size: 25px;
+}
+.username a{
+	color: rgb(70,115,206)!important;
+	font-weight: bold;
+}
+
+/* --------MINI MENU------------- */
+.mini-menu{
+	position: absolute;
+	top:0;
+	left: 0;
+	z-index: 100;
+	width: 150px;	
+  	//background: #DFDFDF;
+}
+.button-mini-menu{
+	font-size: 40px;
+}
+
+
+
+
+
+/* --------LAYOUT MAIN CONTENT------------- */
+.layout-main-content{
+	min-height: 750px;
+}
+
+/* --------TABLE PRICE STOCK MINI------------- */
+.name_company{
+	color: #428bca;
+}
+
+/*---------MÀU SẮC GIÁ TIỀN ------------*/
+.brd, .b_d, .grd, .g_d {
+color: #ff0000;
+}
+.bru, .b_u, .gru, .g_u {
+color: #00ff00;
+}
+.brc, .b_c, .grc, .g_c {
+color: #ff00ff;
+}
+.brf, .b_f, .grf, .g_f {
+color: #66ccff;
+}
+
+
+/* --------STOCK MINI BLOCK------------- */
+.stock-mini-block li table td{
+	text-align: center;
+}
+.list-stock-box li{
+	display: inline-block;
+	vertical-align: top;	
+	width: 108px;
+	text-align:center;
+	font-size: 12px;
+}
+.stock-price-up{
+	color: #39ca32;
+}
+.stock-price-down{
+	color: #F00;
+}
+
+/* --------LIST ARTICLE VERTICAL------------- */
+.list-article-vertical{
+	padding: 15px;
+}
+.list-article-vertical a{
+	color: inherit;	
+	text-decoration: none;
+}
+.list-article-vertical li{	
+	margin-bottom:15px;	
+	height: 150px;	
+	border-bottom: 1px solid #d6d6d6;
+}
+.list-article-vertical li:hover{
+	
+}
+.thumb-article-vertical{
+	width:230px;
+	height:129px;
+	background: #DFDFDF;
+}
+.thumb-article-vertical img{
+	width: 230px;
+	height: 129px;	
+	float: left;
+	margin-right: 15px;
+}
+.detail{
+	/* display: block; */
+}
+.title-vertical{
+	font-weight: bolder;
+}
+.infor-article-vertical{
+	font-size: 20px;
+}
+.infor-article-vertical span{
+	margin-right: 5px;
+	border-right: 1px solid #d6d6d6;
+	padding-right: 5px;
+}
+.infor-article-vertical span:last-child{
+	border-right:none;
+}	
+.infor-article-vertical span i{
+	margin-right: 5px;
+}
+
+/* --------LIST ARTICLE------------- */
+.list-article a{
+	color: inherit;
+}
+.list-article li{
+	vertical-align:top;
+	width:218px;
+	margin:0 10px 15px 0;
+	
+	display:inline-block;
+}
+.list-article li:hover{
+	/* -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.71);
+	-moz-box-shadow:    1px 1px 5px 0px rgba(50, 50, 50, 0.71);
+	box-shadow:         1px 1px 5px 0px rgba(50, 50, 50, 0.71); */
+}
+.thumb{
+		
+}
+.thumb img{
+	width:218px;
+	height:117px;
+	background: #DFDFDF;
+	float: left;
+	margin-bottom: 5px;
+	
+	-webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.71);
+	-moz-box-shadow:    1px 1px 5px 0px rgba(50, 50, 50, 0.71);
+	box-shadow:         1px 1px 5px 0px rgba(50, 50, 50, 0.71);
+}
+.title{
+	font-weight: bolder;
+}
+
+/* --------INFOR  ARTICLE------------- */
+.infor-article{
+	border-top: 1px solid #d6d6d6;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.infor-article li{
+	display:inline-block;
+	margin-right: 5px;
+	border-right: 1px solid #d6d6d6;
+	padding-right: 10px;
+}
+.infor-article li:last-child{
+	border-right: none;
+}
+.infor-article li a{
+	margin-left: 10px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}	
+
+/* --------CONTENT ARTICLE------------- */
+.content img{
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+.main-content{
+	padding-bottom: 20px;
+}
+
+
+/* --------RIGHT BLOCK MINI NEWS------------- */
+.list-news{
+	//padding: 0;
+}
+.list-news li{
+	list-style: none;
+	border-bottom: 1px solid #dcdcdc;
+	height: 100px;
+}
+.news-item img{
+	float: left;
+	margin-right: 5px;
+	width: 125px;
+	height: 80px;
+}
+.news-item a{
+	text-decoration: none;
+}
+.list-news li:last-child{
+	border-bottom: none;
+}
+
+/* --------RIGHT SHARE BLOCK------------- */
+.share-list li{
+	display: inline-block;
+	/* padding: 5px; */
+	
+}
+.share-list li span{
+	border: 1px solid #ccc;
+	margin-right:5px;
+	padding: 9px;
+	height: 49px;
+	width: 49px;
+	font-size: 30px;
+	
+}
+.share-list li i{
+	
+}
+
+/*----------------REGISTER FORM----------*/
+.glyphicon-mix {
+top: 0px !important;
+}
+.register-block{
+	width: 400px;
+	padding: 15px;
+}
+.quick-register i{
+	display: inline-block;
+	border: 1px solid #ccc;
+	margin-right:15px;
+	padding: 9px;
+	height: 49px;
+	width: 49px;
+	font-size: 30px;		
+}
+
+
+/*----------------LOGIN MODAL FORM----------*/
+.modal-edit{
+	width: 400px !important;
+	margin-top: 200px !important;
+}
+
+
+
+
+
+/* --------FOOTER------------- */
+
+footer{	
+	background: #202121;;	
+	color: white;	
+}
+.top-footer{
+	min-height: 300px;
+}
+.connect li a{
+	background:none;
+	color: white;
+	margin-bottom: 5px;
+	padding: 0;
+}
+.connect li a:hover{
+	background: none;
+}
+.contact li p a{
+	color: white;	
+}
+.btm-bar{
+	background: #124989;	
+}
+.copyright{
+	color: white;
+	height: 20px;
+	margin-top: 10px;
+}
+.sign{
+	padding-left: 60px;
+}
+.logo-btm{
+	margin-top: 14px;
+}
+
+
+/*-----------JCAROUSEL------------------*/
+
+/*
+This is the visible area of you carousel.
+Set a width here to define how much items are visible.
+The width can be either fixed in px or flexible in %.
+Position must be relative!
+*/
+.jcarousel {
+    position: relative;
+    overflow: hidden;
+}
+
+/*
+This is the container of the carousel items.
+You must ensure that the position is relative or absolute and
+that the width is big enough to contain all items.
+*/
+.jcarousel ul {
+    width: 20000em;
+    position: relative;
+
+    /* Optional, required in this case since it's a <ul> element */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+These are the item elements. jCarousel works best, if the items
+have a fixed width and height (but it's not required).
+*/
+.jcarousel li {
+    /* Required only for block elements like <li>'s */
+    float: left;
+}
+
+.jcarousel-prev {
+cursor: pointer;
+position: absolute !important;
+left: 5px;
+top: 50px !important;
+}
+.jcarousel-next {
+cursor: pointer;
+position: absolute !important;
+right: 5px;
+top: 50px !important;
+}
+
+
+
+
+/* --------loader spiner------------- */
+#loader {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	z-index: 9999999999;
+}
+/* .spinner {
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	top: 50%;
+	left: 50%;
+	margin-left: -40px;
+	margin-top: -40px;
+	-webkit-animation: rotatee 2.0s infinite linear;
+	animation: rotatee 2.0s infinite linear;
+} */
+
+.spinner {	
+  position: absolute;
+	width: 40px;
+	height: 40px;
+	top: 50%;
+	left: 50%;
+	margin-left: -40px;
+	margin-top: -40px;
+}
+
+.container1 > div, .container2 > div, .container3 > div {
+  width: 6px;
+  height: 6px;
+  background-color: #1e73be;
+
+  border-radius: 100%;
+  position: absolute;
+  -webkit-animation: bouncedelay 1.2s infinite ease-in-out;
+  animation: bouncedelay 1.2s infinite ease-in-out;
+  /* Prevent first frame from flickering when animation starts */
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.spinner .spinner-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.container2 {
+  -webkit-transform: rotateZ(45deg);
+  transform: rotateZ(45deg);
+}
+
+.container3 {
+  -webkit-transform: rotateZ(90deg);
+  transform: rotateZ(90deg);
+}
+
+.circle1 { top: 0; left: 0; }
+.circle2 { top: 0; right: 0; }
+.circle3 { right: 0; bottom: 0; }
+.circle4 { left: 0; bottom: 0; }
+
+.container2 .circle1 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.container3 .circle1 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.container1 .circle2 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.container2 .circle2 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+.container3 .circle2 {
+  -webkit-animation-delay: -0.7s;
+  animation-delay: -0.7s;
+}
+
+.container1 .circle3 {
+  -webkit-animation-delay: -0.6s;
+  animation-delay: -0.6s;
+}
+
+.container2 .circle3 {
+  -webkit-animation-delay: -0.5s;
+  animation-delay: -0.5s;
+}
+
+.container3 .circle3 {
+  -webkit-animation-delay: -0.4s;
+  animation-delay: -0.4s;
+}
+
+.container1 .circle4 {
+  -webkit-animation-delay: -0.3s;
+  animation-delay: -0.3s;
+}
+
+.container2 .circle4 {
+  -webkit-animation-delay: -0.2s;
+  animation-delay: -0.2s;
+}
+
+.container3 .circle4 {
+  -webkit-animation-delay: -0.1s;
+  animation-delay: -0.1s;
+}
+
+@-webkit-keyframes bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0.0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes bouncedelay {
+  0%, 80%, 100% { 
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 40% { 
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
