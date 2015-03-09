@@ -46,4 +46,7 @@ class IndexController extends AbstractActionController {
 	function getDbAdapter() {
 		return $this->getServiceLocator ()->get ( 'Zend\Db\Adapter\Adapter' );
 	}
+	function testAction(){
+		
+	}
 }

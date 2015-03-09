@@ -52,8 +52,9 @@ $(document).ready(function(){
 <div class="row">
 	<div class="col-md-9">
 	<div class="row view-stock-panel hidden">
-	<div class="col-md-12 block">
+	<div class="col-md-12 block">				
 		<table class="table table-bordered text-center stock-price-table hidden">
+		<tbody>
 		  <tr>
 		    <th>Trần</th>
 		    <th>Sàn</th>
@@ -108,7 +109,8 @@ $(document).ready(function(){
 		    <td id="du_ban_gia_1">13.4</td>
 		    <td id="du_ban_KL_1">99</td>
 		  </tr>
-	   </table>
+		  </tbody>
+	   </table>		
 	</div>
 	</div>
 		<h3>Thảo luận</h3>
@@ -135,7 +137,7 @@ $(document).ready(function(){
 		<script>
 			$(document).ready(function(){
 				//refresh stock price trong 15s
-				setInterval(function(){doRefresh()},15000);
+				setInterval(function(){doRefresh()},6000);
 				
 				//**lay name congty add vao select
 				//company_arr;
@@ -190,8 +192,8 @@ $(document).ready(function(){
 									
 									$('.view-stock-panel').removeClass('hidden');
 									$('.view-stock-panel').addClass('show');
-									$('.stock-price-table').clone().removeClass('stock-price-table hidden').addClass('clone-table-price').appendTo('.view-stock-panel .block');
-									}
+									$('.stock-price-table').clone().removeClass('stock-price-table hidden').addClass('clone-table-price').appendTo('.block');																									
+									} 
 							);
 					});
 
@@ -209,17 +211,54 @@ $(document).ready(function(){
 					}
 										
 				}
+				function changeEffect(currentValue,changeValue,changeClass){
+					var same;
+					//console.log($(currentValue).text());
+					//console.log(changeValue);
+										
+					if($(currentValue).text()===changeValue){						
+						same=true;						
+					}else same=false;
+					$(currentValue).text(changeValue).attr('class',changeClass);
+					if(same=false){						
+						$(currentValue).addClass('change-effect');
+						}									
+				}
+				
 				//post lay data de dung cho refresh
-				function refreshPrice(stock_id){					
+				function refreshPrice(stock_id){
+					$('.clone-table-price').find('.change-effect').removeClass('change-effect');					
 					$.post(base_url+'/news/stock/getstockinfo/'+stock_id,								
-							function(data){
+							function(data){						
 								//console.log(data);									
 								$('#'+stock_id+' #id_stock').text(data.stock_info.name.value).removeClass().addClass(data.stock_info.tang_giam.class);
 								$('#'+stock_id+' #name_company').text(data.stock_info.name_company);
 								$('#'+stock_id+' #tran').text(data.stock_info.tran.value).removeClass().addClass(data.stock_info.tran.class);
 								$('#'+stock_id+' #san').text(data.stock_info.san.value).removeClass().addClass(data.stock_info.san.class);
 								$('#'+stock_id+' #thamchieu').text(data.stock_info.thamchieu.value).removeClass().addClass(data.stock_info.thamchieu.class);
-								$('#'+stock_id+' #du_mua_gia_3').text(data.stock_info.du_mua_gia_3.value).removeClass().addClass(data.stock_info.du_mua_gia_3.class);
+								
+								//change effect from here								
+								changeEffect('.clone-table-price#'+stock_id+' #du_mua_gia_3',data.stock_info.du_mua_gia_3.value,data.stock_info.du_mua_gia_3.class);
+								changeEffect('.clone-table-price#'+stock_id+' #du_mua_KL_3',data.stock_info.du_mua_KL_3.value,data.stock_info.du_mua_KL_3.class);
+								changeEffect('.clone-table-price#'+stock_id+' #du_mua_gia_2',data.stock_info.du_mua_gia_2.value,data.stock_info.du_mua_gia_2.class);
+								changeEffect('.clone-table-price#'+stock_id+' #du_mua_KL_2',data.stock_info.du_mua_KL_2.value,data.stock_info.du_mua_KL_2.class);
+								changeEffect('.clone-table-price#'+stock_id+' #du_mua_gia_1',data.stock_info.du_mua_gia_1.value,data.stock_info.du_mua_gia_1.class);
+								changeEffect('.clone-table-price#'+stock_id+' #du_mua_KL_1',data.stock_info.du_mua_KL_1.value,data.stock_info.du_mua_KL_1.class);
+								changeEffect('.clone-table-price#'+stock_id+' #du_ban_gia_3',data.stock_info.du_ban_gia_3.value,data.stock_info.du_ban_gia_3.class);
+								changeEffect('.clone-table-price#'+stock_id+' #du_ban_KL_3',data.stock_info.du_ban_KL_3.value,data.stock_info.du_ban_KL_3.class);
+								changeEffect('.clone-table-price#'+stock_id+' #du_ban_gia_2',data.stock_info.du_ban_gia_2.value,data.stock_info.du_ban_gia_2.class);
+								changeEffect('.clone-table-price#'+stock_id+' #du_ban_KL_2',data.stock_info.du_ban_KL_2.value,data.stock_info.du_ban_KL_2.class);
+								changeEffect('.clone-table-price#'+stock_id+' #du_ban_gia_1',data.stock_info.du_ban_gia_1.value,data.stock_info.du_ban_gia_1.class);
+								changeEffect('.clone-table-price#'+stock_id+' #du_ban_KL_1',data.stock_info.du_ban_KL_1.value,data.stock_info.du_ban_KL_1.class);
+								changeEffect('.clone-table-price#'+stock_id+' #gia_khop',data.stock_info.gia_khop.value,data.stock_info.gia_khop.class);
+								changeEffect('.clone-table-price#'+stock_id+' #khoi_luong_khop',data.stock_info.khoi_luong_khop.value,data.stock_info.khoi_luong_khop.class);
+								changeEffect('.clone-table-price#'+stock_id+' #tang_giam',data.stock_info.tang_giam.value,data.stock_info.tang_giam.class);
+								changeEffect('.clone-table-price#'+stock_id+' #mo_cua',data.stock_info.mo_cua.value,data.stock_info.mo_cua.class);
+								changeEffect('.clone-table-price#'+stock_id+' #cao_nhat',data.stock_info.cao_nhat.value,data.stock_info.cao_nhat.class);
+								changeEffect('.clone-table-price#'+stock_id+' #thap_nhat',data.stock_info.thap_nhat.value,data.stock_info.thap_nhat.class);
+								changeEffect('.clone-table-price#'+stock_id+' #nn_mua',data.stock_info.nn_mua.value,data.stock_info.nn_mua.class);
+																									
+								/* $('#'+stock_id+' #du_mua_gia_3').text(data.stock_info.du_mua_gia_3.value).removeClass().addClass(data.stock_info.du_mua_gia_3.class);
 								$('#'+stock_id+' #du_mua_KL_3').text(data.stock_info.du_mua_KL_3.value).removeClass().addClass(data.stock_info.du_mua_KL_3.class);
 								$('#'+stock_id+' #du_mua_gia_2').text(data.stock_info.du_mua_gia_2.value).removeClass().addClass(data.stock_info.du_mua_gia_2.class);
 								$('#'+stock_id+' #du_mua_KL_2').text(data.stock_info.du_mua_KL_2.value).removeClass().addClass(data.stock_info.du_mua_KL_2.class);
@@ -237,7 +276,7 @@ $(document).ready(function(){
 								$('#'+stock_id+' #mo_cua').text(data.stock_info.mo_cua.value).removeClass().addClass(data.stock_info.mo_cua.class);
 								$('#'+stock_id+' #cao_nhat').text(data.stock_info.cao_nhat.value).removeClass().addClass(data.stock_info.cao_nhat.class);
 								$('#'+stock_id+' #thap_nhat').text(data.stock_info.thap_nhat.value).removeClass().addClass(data.stock_info.thap_nhat.class);
-								$('#'+stock_id+' #nn_mua').text(data.stock_info.nn_mua.value).removeClass().addClass(data.stock_info.nn_mua.class);								
+								$('#'+stock_id+' #nn_mua').text(data.stock_info.nn_mua.value).removeClass().addClass(data.stock_info.nn_mua.class);			 */					
 								}
 						);
 				}
